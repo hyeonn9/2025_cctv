@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+        <head>
+                <title>우리집 보안</title>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
+                <script src="./static/mqttio.js" type="text/javascript"></script>
+                <script src="./static/myChart.js" type="text/javascript"></script>
+        	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" type="text/javascript"></script>
+                <script>
+                        window.onload = function() {
+                                connect("192.168.137.99", 9001)
+                        }
+
+                        window.addEventListener("load", drawChart); // load 이벤트가 발생하면 drawChart() 호출하도록 등록
+                </script>
+
+                <style>
+                .main-container {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: flex-start;
+                        gap: 50px;
+                        flex-wrap: wrap;
+                }
+
+                /* 왼쪽 카메라 (세로 배치) */
+                .camera-section {
+                        display: flex;
+                        flex-direction: column;   /* 세로 배치 */
+                        gap: 10px;                /* 영상 사이 간격 */
+                        padding: 20px;
+                }
+
+                /* 오른쪽 그래프 */
+                .chart-section {
+                        width: 600px;
+                        padding: 20px;
+                }
+                h3 {
+                        margin-top: 0;
+                        margin-bottom: 0;
+                }
+                </style>
+        </head>
+        <body>
+                <div class="main-container">
+
+                        <div class="camera-section">
+                                <h3>현관문 앞 CCTV</h3>
+                                <img id="raw" width="480" height="320" />
+                                <img id="human" width="480" height="320" />
+                        </div>
+                        
+                        <div class="chart-section">
+                                <h3>방문자 및 침입자 통계</h3>
+                                <canvas id="canvas"></canvas>
+                        </div>
+                </div>
+        </body>
+</html>
